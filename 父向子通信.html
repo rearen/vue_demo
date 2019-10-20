@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>父向子通信</title>
+</head>
+<body>
+<div id="app">
+    <introduce :title="msg"></introduce>
+    <hr>
+    <for-component :items="lessons"></for-component>
+<!--    <for-component ></for-component>-->
+</div>
+
+
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+
+    //定义局部组件
+    const introduce={
+        template:"<h1>{{title}}</h1>",
+        props:['title']
+    };
+    const forComponent={
+        template: "<ul><li v-for='item in items'>{{item}}</li></ul>",
+        props:['items'],
+        // props:{
+        //     items:{
+        //         type:Array,
+        //         default:['Java']
+        //     }
+        // }
+    };
+
+    const app = new Vue({
+        el: "#app",//element,vue作用的标签
+        data: {
+            msg:"大家好，我是渣渣辉！",
+            lessons:['Java','Php','Python']
+            },
+        components:{
+            introduce,forComponent
+        }
+    });
+</script>
+</body>
+</html>
